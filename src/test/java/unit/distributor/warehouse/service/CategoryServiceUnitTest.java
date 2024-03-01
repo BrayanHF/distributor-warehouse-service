@@ -40,7 +40,7 @@ class CategoryServiceUnitTest {
     void allCategories() {
         when(categoryRepository.findAll()).thenReturn(categories);
 
-        List<Category> categories = categoryService.allCategories();
+        List<Category> categories = categoryService.getAllCategories();
         assertEquals(2, categories.size());
     }
 
@@ -48,7 +48,7 @@ class CategoryServiceUnitTest {
     void categoryById() {
         when(categoryRepository.findById(1L)).thenReturn(Optional.of(categories.getFirst()));
 
-        Category category = categoryService.categoryById(1L);
+        Category category = categoryService.getCategoryById(1L);
         assertEquals("Category 1", category.getName());
     }
 
@@ -60,19 +60,6 @@ class CategoryServiceUnitTest {
 
         Category savedCategory = categoryService.addCategory(newCategory);
         assertEquals("Category 3", savedCategory.getName());
-    }
-
-    @Test
-    void updateCategory() {
-        when(categoryRepository.findById(1L)).thenReturn(Optional.of(categories.getFirst()));
-
-        Category category = categories.getFirst();
-        category.setName("Update Category");
-
-        when(categoryRepository.save(category)).thenReturn(category);
-
-        Category updatedCategory = categoryService.updateCategory(category);
-        assertEquals("Update Category", updatedCategory.getName());
     }
 
     @Test

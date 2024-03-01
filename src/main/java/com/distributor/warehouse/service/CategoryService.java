@@ -20,28 +20,20 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> allCategories() {
+    public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    public Category categoryById(long id) {
+    public Category getCategoryById(long id) {
         return categoryRepository.findById(id).orElse(null);
     }
 
+    //! ERROR: Categories with the same name are being saved
     public Category addCategory(Category category) {
         try {
             return categoryRepository.save(category);
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("Ya existe una categoría con el mismo nombre.");
-        }
-    }
-
-    public Category updateCategory(Category category) {
-        Optional<Category> optionalCategory = categoryRepository.findById(category.getId());
-        if (optionalCategory.isPresent()) {
-            return addCategory(category);
-        } else {
-            throw new RuntimeException("No se puede actualizar la categoría porque no existe.");
         }
     }
 
@@ -55,8 +47,9 @@ public class CategoryService {
             } catch (Exception e) {
                 return false;
             }
+        } else {
+            throw new RuntimeException("No se puede eliminar la categoría porque no existe.");
         }
-        return false;
     }
 
 }

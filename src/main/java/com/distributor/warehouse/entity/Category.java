@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"LOWER(name)"}, name = "uk_name")})
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "uk_name"))
 public class Category {
 
     @Id
