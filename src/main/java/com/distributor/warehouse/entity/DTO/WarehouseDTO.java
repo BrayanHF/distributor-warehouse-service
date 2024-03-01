@@ -1,3 +1,5 @@
 package com.distributor.warehouse.entity.DTO;
 
-public record WarehouseDTO(long id, String name, String address) {}
+import com.distributor.warehouse.entity.Status;
+
+public record WarehouseDTO(long id, String name, String address, Status status) {}

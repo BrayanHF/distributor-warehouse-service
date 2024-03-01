@@ -25,6 +25,11 @@ public class Product {
     @Column(length = 50)
     private String name;
 
+    @NotBlank(message = "La descripción del producto no puede estar vacía.")
+    @Size(min = 10, message = "La descripción del producto debe tener más de 10 caracteres.")
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     @Min(value = 50, message = "El precio del producto no puede ser menor a $50 pesos.")
     private double price;
 
@@ -38,5 +43,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductImage> images;
+
+    private Status status;
 
 }

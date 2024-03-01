@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"LOWER(name)"}, name = "uk_name")})
 public class Category {
 
     @Id
@@ -21,5 +22,7 @@ public class Category {
     @Size(min = 3, max = 50, message = "El nombre de la catagoría debe tener entre 3 y 50 caracteres.")
     @Column(length = 50)
     private String name;
+
+    private Status status;
 
 }

@@ -25,4 +25,6 @@ public class ProductInWarehouse {
 
     private double stock;
 
+    private Status status;
+
 }

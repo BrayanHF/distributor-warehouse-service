@@ -32,4 +32,6 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     private List<ProductInWarehouse> productsInWarehouse;
 
+    private Status status;
+
 }
